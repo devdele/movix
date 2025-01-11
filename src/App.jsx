@@ -7,21 +7,21 @@ import ErrorMessage from "./Components/ErrorMessage";
 
 const App = () => {
   const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState(""); // For debounce logic
+  const [debouncedQuery, setDebouncedQuery] = useState(""); 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Debounce the query
+ 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(query);
-    }, 300); // 300ms delay
+    }, 300); 
 
-    return () => clearTimeout(timer); // Cleanup the timer
+    return () => clearTimeout(timer); 
   }, [query]);
 
-  // Fetch movies when the debounced query changes
+
   useEffect(() => {
     const fetchMovies = async () => {
       if (!debouncedQuery.trim()) {
@@ -31,14 +31,14 @@ const App = () => {
       }
 
       setLoading(true);
-      setError(null); // Clear error before making a new API call
+      setError(null); 
       try {
         const response = await axios.get(
           `http://www.omdbapi.com/?apikey=${import.meta.env.VITE_OMDB_API_KEY}&s=${debouncedQuery}`
         );
         if (response.data.Response === "True") {
           setMovies(response.data.Search);
-          setError(null); // Clear error when movies are successfully fetched
+          setError(null); 
         } else {
           setMovies([]);
           setError(response.data.Error);
