@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.loader {
+  width: 2rem;
+  height: 2rem;
+  border-width: 0.25rem;
+  border-color: #3b82f6 transparent #3b82f6 transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
